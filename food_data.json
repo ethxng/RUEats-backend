@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Tacos",
+        "ratings": 5.0
+    },
+    {
+        "name": "Chipotle bowl",
+        "ratings": 5.0
+
+    },
+    {
+        "name": "Gyro",
+        "ratings": 4.3
+    },
+    {
+        "name": "Salad",
+        "ratings": 4.4
+    },
+    {
+        "name": "Ice cream",
+        "ratings": 4.4
+    },
+    {
+        "name": "Pizza",
+        "ratings": 5.0
+    }
+]
