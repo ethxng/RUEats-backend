@@ -3,36 +3,43 @@
         "name": "Tacoria",
         "address": "56 Easton Ave #A, New Brunswick, NJ 08901",
         "coordinates": [40.7952311,-74.4793892],
-        "ratings": 4.5
+        "ratings": 4.5,
+        "id": 100
     },
     {
         "name": "Ramen Nagomi",
         "address": "49 Bayard St, New Brunswick, NJ 08901",
         "coordinates": [40.494560, -74.444618],
-        "ratings": 4.6
+        "ratings": 4.6,
+        "id" : 99
     },
     {
         "name": "King of Gyro",
         "address": "105 Easton Ave, New Brunswick, NJ 08901",
         "coordinates": [40.498772, -74.451668],
-        "ratings": 4.3
+        "ratings": 4.3,
+        "id" : 98
     },
     {
         "name": "Stuff Yer Face",
         "address": "49 Easton Ave, New Brunswick, NJ 08901",
         "coordinates": [40.498081, -74.448921],
-        "ratings": 4.4
+        "ratings": 4.4,
+        "id":97
     },
     {
         "name": "16 Handles",
         "address": "105 Joyce Kilmer Ave, Piscataway, NJ 08854",
         "coordinates": [40.524910, -74.437010],
-        "ratings": 4.4
+        "ratings": 4.4,
+        "id":96
     },
     {
         "name": "R U Hungry",
         "address": "95 Hamilton St, New Brunswick, NJ 08901",
         "coordinates": [40.499329, -74.448486],
-        "ratings": 4.2
+        "ratings": 4.2,
+        "id":95
+
     }
 ]
