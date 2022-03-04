@@ -1,18 +1,16 @@
-const express = require("express");
+const express = require('express');
 const path = require('path');
+const router = express.Router();
 const app = express();
 const PORT = 2003;
 
-const app = express();
+var restaurantsRouter = require('./routes/restaurant');
+var indexRouter = require('./routes/indx');
+var foodsRouter = require('./routes/food');
 
-app.get('/', (req, res, next) => {
-    res.send('Welcome to RUEats');
-  });
+app.use('/', indexRouter);
+app.use('/restaurants', restaurantsRouter);
+app.use('/foods', foodsRouter);
+app.listen(PORT);
 
-//app.get('/food', (req, res, next) => {
-//    res.sendFile(path.join(__dirname, '/sample_data.json'));
-//  });
-  
-app.listen(3000, () =>
-  console.log('Example app listening on port 3000!'),
-);
+module.exports = app;
