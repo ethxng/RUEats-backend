@@ -9,8 +9,12 @@ var indexRouter = require('./routes/indx');
 var foodsRouter = require('./routes/food');
 
 app.use('/', indexRouter);
+
 app.use('/restaurants', restaurantsRouter);
 app.use('/foods', foodsRouter);
-app.listen(PORT);
+
+app.listen(PORT, () => {
+    console.log(`Listening on port No. ${PORT}`)
+});
 
 module.exports = app;

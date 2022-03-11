@@ -1,26 +1,32 @@
 [
     {
+        "id": 1000,
         "name": "Tacos",
         "ratings": 5.0
     },
     {
+        "id": 1001,
         "name": "Chipotle bowl",
         "ratings": 5.0
 
     },
     {
+        "id": 1002,
         "name": "Gyro",
         "ratings": 4.3
     },
     {
+        "id": 1003,
         "name": "Salad",
         "ratings": 4.4
     },
     {
+        "id": 1004,
         "name": "Ice cream",
         "ratings": 4.4
     },
     {
+        "id": 1005,
         "name": "Pizza",
         "ratings": 5.0
     }

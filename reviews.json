@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1, 
+        "food_id": 1000,
+        "rating": 4.8,
+        "description": "tacos was splendid, especially their specialty, carne asada"
+    },
+    {
+        "id": 1, 
+        "food_id": 1000,
+        "rating": 3.5,
+        "description": "not an authentic restaurant. not as good as what my grandma makes"
+    },
+    {
+        "id": 2,
+        "food_id": 1001,
+        "rating": 5.0,
+        "description": "very filling, the combination of rice, beans, and meats make it very healthy"
+    },
+    {
+        "id": 2,
+        "food_id": 1001,
+        "rating": 4.3,
+        "description": "Good food but they don't give me extra meat when I politely ask"
+    },
+    {
+        "id": 3,
+        "food_id": 1002,
+        "rating": 4.3,
+        "description": "good mix of rice and meat with the right amount of salad and pita bread. red sauce complements the rice very well"
+    },
+    {
+        "id": 4,
+        "food_id": 1003,
+        "rating": 3.0,
+        "description": "it's ok. nothing too crazy. the secret dressing on the menu was good tho"
+    },
+    {
+        "id": 5,
+        "food_id": 1004,
+        "rating": 4.4,
+        "description": "not too sweet, which is exactly what I was looking for. their cherry vanilla + raspberry gelato is top notch"
+    },
+    {
+        "id": 6,
+        "food_id": 1005,
+        "rating": 2.0,
+        "description": "oily, salty, too cheesy. not recommended!"
+    },
+    {
+        "id": 6,
+        "food_id": 1005,
+        "rating": 4.5,
+        "description": "$1 per slice and tasty. where else can you find such a restaurant?"
+    }
+]
