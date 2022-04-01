@@ -7,7 +7,7 @@ const PORT = 2003;
 var restaurantsRouter = require('./routes/restaurant');
 var indexRouter = require('./routes/indx');
 var foodsRouter = require('./routes/food');
-
+app.use(express.urlencoded({ extended: false }));
 app.use('/', indexRouter);
 
 app.use('/restaurants', restaurantsRouter);

@@ -48,9 +48,15 @@
         "description": "oily, salty, too cheesy. not recommended!"
     },
     {
-        "id": 6,
+        "id": 7,
         "food_id": 1005,
         "rating": 4.5,
         "description": "$1 per slice and tasty. where else can you find such a restaurant?"
+    },
+    {
+        "id": 8,
+        "food_id": 1006,
+        "rating": 3.6,
+        "description": "mediocre food. could have gotten that at the dining hall"
     }
 ]

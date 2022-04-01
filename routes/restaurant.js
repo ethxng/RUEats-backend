@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
 const path = require('path');
+const fs = require('fs');
 const restaurants_data = require("../sample_data.json")
 
 router.get('/all', (req, res, next) => {
@@ -18,6 +19,24 @@ router.get('/:id', (req, res, next) => {
     if(found == false){
         res.send("Restaurant not found")
     }
-})
+});
+
+// submitting new restaurant
+router.post("/", (req, res, next) => {
+    let name = req.body.name, address = req.body.address, coordinates = [1,1], ratings = 0.0;
+    let orignalData = fs.readFileSync('./sample_data.json');
+    let data = JSON.parse(orignalData);
+    let newRestaurant = {
+        "name": name,
+        "address": address,
+        "coordinates": coordinates, 
+        "ratings": ratings,
+        "id": 200
+    }
+    data.push(newRestaurant);
+    let modifiedData = JSON.stringify(data);
+    fs.writeFileSync('./sample_data.json', modifiedData);
+    res.status(200).send("submit restaurant successfully");
+});
 
 module.exports = router;

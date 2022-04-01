@@ -2,32 +2,43 @@
     {
         "id": 1000,
         "name": "Tacos",
-        "ratings": 5.0
+        "ratings": 5.0,
+        "restaurant_id": 100
     },
     {
         "id": 1001,
         "name": "Chipotle bowl",
-        "ratings": 5.0
-
+        "ratings": 5.0,
+        "restaurant_id": 99
     },
     {
         "id": 1002,
         "name": "Gyro",
-        "ratings": 4.3
+        "ratings": 4.3,
+        "restaurant_id": 98
     },
     {
         "id": 1003,
         "name": "Salad",
-        "ratings": 4.4
+        "ratings": 4.4,
+        "restaurant_id": 97
     },
     {
         "id": 1004,
         "name": "Ice cream",
-        "ratings": 4.4
+        "ratings": 4.4,
+        "restaurant_id": 96
     },
     {
         "id": 1005,
         "name": "Pizza",
-        "ratings": 5.0
+        "ratings": 5.0,
+        "restaurant_id": 95
+    },
+    {
+        "id": 1006,
+        "name": "Spicy Garlic Stir Fry",
+        "ratings": 3.6,
+        "restaurant_id": 200
     }
 ]
