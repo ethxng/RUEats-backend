@@ -4,61 +4,78 @@ const path = require('path');
 const fs = require('fs');
 const food_data = require('../food_data.json');
 const reviews = require("../reviews.json");
+const mongoose = require('mongoose');
+const Food = require('../models/foodModel');
+const Review = require('../models/reviewModel');
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
+function getToken(req, res, next){
+    const bearerHeader = req.headers['authorization'];
+    if (typeof bearerHeader !== 'undefined'){
+        const bearer = bearerHeader.split(' ');
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    }  else{
+        res.sendStatus(403);
+    }
+}
+
+// return all food
 router.get('/all', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../food_data.json'));
+    Food.find({}).populate('restaurant_id').exec((err, results) => {
+        if (err)
+            return next(err);
+        else {
+            res.send(results);
+        }
+    });
 });
 
 // getting a specific food
 router.get('/:id', (req, res, next) => {
-    // id is unique for each food
-    let found = false;
-    for (let i = 0; i < food_data.length; i++){
-        if (food_data[i].id == req.params.id){
-            found = true;
-            res.send(JSON.stringify(food_data[i]));
+    Food.findById(req.params.id).exec('restaurant_id').exec((err, result) => {
+        if (err)
+            return next(err);
+        else{
+            res.send(result);
         }
-    }
-    if (found == false)
-        res.send("Food not found!");
+    })
 });
 
 // getting all reviews for a specific food
 router.get("/:id/reviews", (req, res, next) => {
-    let result = [];
-    for (let i = 0; i < reviews.length; i++){
-        if (reviews[i].food_id == req.params.id){
-            result.push(reviews[i]);
+    Review.find({food_id: req.params.id}).populate('food_id').populate('OP').exec((err, results) => {
+        if (err)
+            return next(err);
+        else{
+            res.send(results);
         }
-    }
-    if (result.length == 0){
-        res.send("Either this food does not exist or there are no reviews yet.");
-    } else{
-        res.send(JSON.stringify(result));
-    }
-})
+    });
+});
 
 // posting a new review
-router.post('/:id/reviews', (req, res, next) => {
-    let orignalData = fs.readFileSync('./reviews.json');
-    let data = JSON.parse(orignalData);
-    // generate an id from 0 to 1000, inclusive
-    let id = Math.floor(Math.random() * 1000) + 1;
-    
-    // check to see if the newly generated id has been used before
-    while ((data.some(rev => rev.id === id)) !== null){
-        id = Math.floor(Math.random() * 1000) + 1;
-    }
-    let newReview = {
-        "id": id,
-        "food_id": req.params.id,
-        "ratings": req.body.ratings,
-        "description": req.body.description
-    };
-    data.push(newReview);
-    let modifiedData = JSON.stringify(data);
-    fs.writeFileSync('./reviews.json', modifiedData);
-    res.status(200).send("submit review successfully");
+router.post('/:id/reviews', getToken, (req, res, next) => {
+    jwt.verify(req.token, 'incubator', err => {
+        if (err)
+            res.sendStatus(401);
+        else{
+            let data = new Review({
+                food_id: req.params.id, 
+                review: req.body.review,
+                rating: req.body.rating, 
+                OP: req.user.id
+            });
+            data.save(err => {
+                if (err)
+                    return next(err);
+                else{
+                    res.status(200).send("submit successfully");
+                }
+            });
+        }
+    })
 });
 
 module.exports = router;

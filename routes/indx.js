@@ -1,40 +1,58 @@
 let express = require('express');
 let router = express.Router();
 const fs = require('fs');
+const User = require('../models/UserModel');
+const jwt = require('jsonwebtoken');
+
 
 router.get('/', (req, res, next) => {
-    if (res.locals.currentUser === null)
+    if (err)
         res.send("Welcome to RUEats! (not logged in)");
-    else{
-        //res.send(`Welcome to RUEats, ${res.locals.currentUser.username}!`);
-        console.log(res.locals.currentUser);
-        res.send(res.locals.currentUser);
-    }
+    else    res.send("Welcome to RUEats!"); 
 });
 
 router.get('/log-in', (req, res, next) => {
     res.send("here is where you will log in");
 });
 
-router.post('/log-in', (req, res, next) => {
-    let orignalData = fs.readFileSync('./users_data.json');
-    let data = JSON.parse(orignalData);
-    let user = {
-        username: req.body.username,
-        password: req.body.password
-    };
-    let found = false;
-    for (let i = 0; i < data.length; i++){
-        if (data[i].username === req.body.username && data[i].password === req.body.password){
-            res.locals.currentUser = user;
-            found = true;
-            // just send a message back with user's id
-            res.redirect('/');
-        }
+router.get("/sign-up", (req, res, next) => {
+    res.send("sign up here");
+});
+
+router.post('/sign-up', (req, res, next) => {
+    let data = {
+        first_name: req.body.first_name, 
+        last_name: req.body.last_name, 
+        email: req.body.email,
+        password: req.body.password,
+        username: req.body.username
     }
-    // if got out of loop, then user does not exist
-    if (found === false)
-        res.send("credentials are not correct! try again!");
+    let newUser = new User(data);
+    newUser.save(err => {
+        if (err)
+            return next(err);
+        else{
+            res.status(200).send("Account created successfully!");
+        }
+    });
+});
+
+router.post('/log-in', (req, res, next) => {
+    User.find({username: req.body.username, password: req.body.password}).exec((err, user) => {
+        if (err)
+            return next(err);
+        else if (user !== null){
+            const token = jwt.sign({user: user}, 'incubator', {expiresIn: "1h"});
+            console.log("token: " + token);
+            res.status(200).json({token, message: "Signed in successfully"});
+        } else{
+            res.send("Something went wrong while authenticating");
+        }
+    })
+});
+
+router.post('log-out', (req, res, next) => {
+    req.token = null; 
 });
 
 module.exports = router;
