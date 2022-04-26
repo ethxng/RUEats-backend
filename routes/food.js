@@ -71,7 +71,7 @@ router.post('/:id/reviews', getToken, (req, res, next) => {
                 if (err)
                     return next(err);
                 else{
-                    res.status(200).send("submit successfully");
+                    res.status(200).send("submit new review successfully");
                 }
             });
         }

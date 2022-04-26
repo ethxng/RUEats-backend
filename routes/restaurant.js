@@ -6,7 +6,7 @@ const restaurants_data = require("../sample_data.json");
 const Restaurant = require('../models/restaurantModel');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-//require('../passport');
+const Food = require("../models/foodModel");
 
 function getToken(req, res, next){
     const bearerHeader = req.headers['authorization'];
@@ -41,6 +41,28 @@ router.get('/:id', (req, res, next) => {
         }
     })
 });
+
+// posting a food from a specific restaurant
+router.post('/:id', getToken, (req, res, next) => {
+    jwt.verify(req.token, 'incubator', err => {
+        if (err)
+            res.sendStatus(401);
+        else{
+            let data = new Food({
+                restaurants_id: req.params.id,
+                name: req.body.name,
+                description: req.body.description
+            });
+            data.save(err => {
+                if (err)
+                    res.status(500).send("unable to save data. try again later!");
+                else  
+                    res.status(200).send("submit new food successfully");
+            })
+        }
+    })
+})
+
 
 // submitting new restaurant
 router.post("/", (req, res, next) => {
