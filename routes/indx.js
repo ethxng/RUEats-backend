@@ -6,9 +6,7 @@ const jwt = require('jsonwebtoken');
 
 
 router.get('/', (req, res, next) => {
-    if (err)
-        res.send("Welcome to RUEats! (not logged in)");
-    else    res.send("Welcome to RUEats!"); 
+    res.send("Welcome to RUEats!"); 
 });
 
 router.get('/log-in', (req, res, next) => {
