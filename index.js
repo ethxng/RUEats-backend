@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const app = express();
-const PORT = 2003;
+const PORT = process.env.PORT || 2003;
 const mongoose = require('mongoose');
 
 const mongoDB = "mongodb+srv://admin1:ethan@cluster0.6akjg.mongodb.net/RUEats?retryWrites=true&w=majority";
